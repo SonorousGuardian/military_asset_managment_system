@@ -184,8 +184,36 @@ The system implements a dual-layer logging strategy:
 
 The `seed_sqlite.js` script initializes the following accounts for testing:
 
-| Role          | Username          | Password      |
-| ------------- | ----------------- | ------------- |
-| **Admin**     | `admin`           | `password123` |
-| **Commander** | `commander_alpha` | `password123` |
 | **Logistics** | `logistics_bravo` | `password123` |
+
+---
+
+## 9. Deployment
+
+### **Docker (Local / Self-Hosted)**
+
+The project includes a `docker-compose.yml` for easy deployment.
+
+1.  Build and Start:
+    ```bash
+    docker-compose up --build
+    ```
+2.  Access:
+    - Backend: `http://localhost:5000`
+    - Frontend: `http://localhost:5173`
+
+### **Vercel (Frontend)**
+
+1.  Import the repository into Vercel.
+2.  Set **Root Directory** to `frontend`.
+3.  Add Environment Variable:
+    - `VITE_API_URL`: `https://<your-backend-url>/api`
+4.  Deploy.
+
+### **Railway (Backend)**
+
+1.  Import the repository into Railway.
+2.  Set **Root Directory** to `backend`.
+3.  Add Environment Variable (Optional if using defaults):
+    - `PORT`: `5000`
+4.  Deploy.
