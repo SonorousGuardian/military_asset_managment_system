@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: military_backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules # Anonymous volume to prevent Windows node_modules from overwriting container's
+    environment:
+      - PORT=5000
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: military_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Anonymous volume for frontend dependencies
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    depends_on:
+      - backend
+    restart: unless-stopped
